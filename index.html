@@ -113,11 +113,12 @@
           localStorage.removeItem(stateKey);
           if (access_token) {
             $.ajax({
-                url: 'https://api.spotify.com/v1/me',
+                url: 'https://api.spotify.com/v1/users/12172994195/playlists',
                 headers: {
                   'Authorization': 'Bearer ' + access_token
                 },
                 success: function(response) {
+                    console.log(response);
                   userProfilePlaceholder.innerHTML = userProfileTemplate(response);
 
                   $('#login').hide();
@@ -137,7 +138,7 @@
             var state = generateRandomString(16);
 
             localStorage.setItem(stateKey, state);
-            var scope = 'user-read-private user-read-email';
+              var scope = 'user-read-private user-read-email playlist-read-private';
 
             var url = 'https://accounts.spotify.com/authorize';
             url += '?response_type=token';
